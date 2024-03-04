@@ -55,3 +55,37 @@ let result = binarySearch(arr, target, 0, n-1);
 if(result == -1) console.log("원소가 존재하지 않습니다.");
 else console.log(`${result + 1}번째 원소입니다.);
 ```
+
+### 정렬된 배열에서 특정 원소의 개수 구하기
+
+- 값이 특정 범위에 속하는 원소의 개수 구하기
+  - 코테에서 `정렬된 배열`에서 값이 특정 범위에 해당하는 원소의 개수를 계산하는 것을 요구하는 경우 존재
+  - 해당 문제를 해결하기 위해 `lowerBound() 또는 upperBound()`를 사용할 수 있다.
+
+### LowerBound(하한), UpperBound(상한)
+
+<img src="../../public/images/binarySearch/lowerUpperBound.png" width="600">
+
+- lowerBound(arr,x) : 정렬된 순서를 유지하면서 배열 arr에 x를 넣을 가장 왼쪽 인덱스를 반환
+  ```
+  const lowerBound = (arr, target, start, end) => {
+    while(start < end){
+      let mid = parseInt((start + end) / 2);
+      if(arr[mid] >= target) end = mid;
+      else start = mid + 1;
+    }
+    return end;
+  }
+  ```
+  <img src="../../public/images/binarySearch/lowerBound.png" width="600">
+- upperBound(arr,x) : 정렬된 순서를 유지하면서 배열 arr에 x를 넣을 가장 오른쪽 인덱스를 반환
+  ```
+  const upperBound = (arr, target, start, end) => {
+    while(start < end){
+      let mid = parseInt((start + end) / 2);
+      if(arr[mid] > target) end = mid;
+      else start = mid + 1;
+    }
+    return end;
+  }
+  ```

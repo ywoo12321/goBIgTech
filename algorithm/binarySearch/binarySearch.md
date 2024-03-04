@@ -89,3 +89,5 @@ else console.log(`${result + 1}번째 원소입니다.);
     return end;
   }
   ```
+
+## 매개변수 탐색(Parametric Search)

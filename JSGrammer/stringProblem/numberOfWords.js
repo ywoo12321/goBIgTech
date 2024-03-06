@@ -6,4 +6,4 @@ const input = require("fs")
 
 const words = input.shift().split(" ");
 
-console.log(words.length);
+words[0] == "" ? console.log(0) : console.log(words.length);

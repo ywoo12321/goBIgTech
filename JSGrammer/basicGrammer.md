@@ -46,9 +46,22 @@ console.log(a % b); // 1
 
 - reduce() 메서드는 배열의 각 요소에 대해 reducer 함수를 실행한 뒤에 하나의 결과를 반환한다.
 - reducer의 형태
+
   - (accumulator, currentValue) => 반환 값
   - 배열의 각 원소를 하나씩 확인하며, 각 원소는 currentValue에 해당.
   - return 된 반환 값은 그 이후의 원소에 대하여 accumulator에 저장된다.
+
+- reduce 응용
+
+```
+let a = [10, 10, 2, 3, 4, 3, 5];
+const aDictionary = a.reduce((acc,num)=>{
+  acc[num] = (acc[num] || 0) + 1;
+  return acc
+},{});
+
+console.log(aDictionary) // {'10' : 2, '2' : 1, '3' : 2, '4' : 1, '5' : 1}
+```
 
 ### 배열 초기화 방법
 
@@ -100,3 +113,21 @@ console.log(a % b); // 1
   let x = 123.456;
   console.log(x.toFixed(2)); // 123.46
   ```
+
+### Dictionary key 값을 가지고 있는지 확인
+
+```
+//1. hasOwnProperty
+const hasKey = a.hasOwnProperty('10');
+console.log(hasKey); // true
+
+//2. in
+const hasKey = '10' in a;
+console.log(hasKey); // true
+
+//3. includes
+const hasKey = Object.keys(a).includes('10');
+console.log(hasKey); // true
+```
+
+- 해당 방식에서 includes는 Object.key 배열을 메모리에 할당하기 때무넹 가장 비효율적이며, 1번이 속도가 가장 빠르다고 한다.

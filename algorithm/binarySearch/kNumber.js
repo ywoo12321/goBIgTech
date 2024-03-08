@@ -7,11 +7,24 @@ const input = require("fs")
 const arrayLength = Number(input.shift());
 const kNumber = Number(input.shift());
 
-let arr = Array.from(Array(arrayLength), () => new Array(arrayLength));
-for (let i = 0; i < arrayLength; i++) {
-  for (let j = 0; j < arrayLength; j++) {
-    arr[i][j] = (i + 1) * (j + 1);
+const binarySearch = (target, start, end) => {
+  let answer = 0;
+  while (start <= end) {
+    const mid = parseInt((start + end) / 2);
+    let count = 0;
+    for (let i = 1; i < arrayLength + 1; i++) {
+      count += Math.min(parseInt(mid / i), arrayLength);
+    }
+    if (count < target) {
+      start = mid + 1;
+    } else {
+      answer = mid;
+      end = mid - 1;
+    }
   }
-}
-const sortArr = arr.flat().sort((a, b) => a - b);
-console.log(sortArr[kNumber - 1]);
+  return answer;
+};
+
+const answer = binarySearch(kNumber, 1, kNumber);
+
+console.log(answer);

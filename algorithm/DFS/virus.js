@@ -22,7 +22,6 @@ const dfs = (arr, target, visited) => {
   countVirusComputer += 1;
   for (computer of arr[target]) {
     if (!visited[computer]) {
-      console.log(computer);
       dfs(arr, computer, visited);
     }
   }
